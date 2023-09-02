@@ -5,10 +5,34 @@
     font-family: "Poppins", sans-serif;
   }
   body {
-    background-color: #f4c531;
+    background-color: #e8b60f32;
+  }
+  body::before {
+    content: ""; /* Create an empty pseudo-element */
+    background-image: url(bg.jpg); /* Background image URL */
+    background-size: cover;
+    opacity: 0.8; /* Adjust the opacity of the background image (0.0 to 1.0) */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute; /* Position the overlay absolutely */
+    z-index: -1; /* Place the overlay behind the content */
+}
+  .Heading{
+    color: #ffffff;
+    margin-left: 80px;
+    margin-top: 10px;
+    font-size: 20px;
+  }
+ .quote pre{
+  color: #ffffff;
+    margin-left: 45px;
+    font-size: 15px;
+    text-align: left;
   }
   .container {
-    background-color: #ffffff;
+    background-color: #ffffff57;
     font-size: 16px;
     padding: 3em 2.8em;
     width: 90vw;
@@ -18,12 +42,13 @@
     left: 50%;
     top: 50%;
     border-radius: 0.6em;
+    
   }
   .search-container {
     width: 100%;
     display: grid;
     grid-template-columns: 9fr 3fr;
-    gap: 1.2em;
+    gap: 1.2em;   
   }
   .search-container input {
     font-size: 1em;
@@ -31,6 +56,7 @@
     border: none;
     outline: none;
     border-bottom: 2px solid #202030;
+    background-color: #44413600;
   }
   .search-container button {
     font-size: 1em;
@@ -70,9 +96,12 @@
     border-radius: 0.3em;
     font-weight: 600;
   }
+  #search-btn:hover{
+    cursor: pointer;
+  }
   #recipe {
     position: absolute;
-    background-color: #ffffff;
+    background-color: #f2e1e1;
     min-height: 100%;
     width: 100%;
     top: 0;
