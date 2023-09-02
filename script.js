@@ -3,6 +3,7 @@ let result = document.getElementById("result");
 let searchBtn = document.getElementById("search-btn");
 let url = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
 let userInput = document.getElementById("user-inp");
+const suggestionsContainer = document.getElementById("suggestions-container");
 
 function performSearch(){
   let userInp = document.getElementById("user-inp").value;
@@ -80,3 +81,62 @@ userInput.addEventListener("keyup", (event) => {
     performSearch();
   }
 });
+
+
+
+
+
+
+
+
+
+
+
+function fetchSuggestions(userInputValue) {
+  fetch(url + userInputValue)
+      .then((response) => response.json())
+      .then((data) => {
+          const meals = data.meals;
+
+          // Clear the previous suggestions
+          suggestionsContainer.innerHTML = "";
+
+          if (meals) {
+              meals.forEach((meal) => {
+                  const suggestionItem = document.createElement("div");
+                  suggestionItem.classList.add("suggestion-item");
+                  suggestionItem.innerText = meal.strMeal;
+
+                  // Add a click event listener to populate the input field with the suggestion
+                  suggestionItem.addEventListener("click", () => {
+                      userInput.value = meal.strMeal;
+                      suggestionsContainer.innerHTML = ""; // Clear suggestions after selecting
+                      performSearch(); // Trigger the search immediately
+                  });
+
+                  suggestionsContainer.appendChild(suggestionItem);
+              });
+          }
+      })
+      .catch(() => {
+          // Handle errors if needed
+      });
+}
+
+// Event listener for input changes
+userInput.addEventListener("input", () => {
+  const userInputValue = userInput.value.trim(); // Remove leading/trailing spaces
+  if (userInputValue.length >= 1) { // You can adjust the minimum length for suggestions
+      fetchSuggestions(userInputValue);
+      suggestionsContainer.style.display = "block"; // Show suggestions
+  } else {
+      suggestionsContainer.style.display = "none"; // Hide suggestions when input is too short
+  }
+});
+document.addEventListener("click", (event) => {
+  if (!suggestionsContainer.contains(event.target) && event.target !== userInput) {
+      suggestionsContainer.style.display = "none";
+  }
+});
+
+

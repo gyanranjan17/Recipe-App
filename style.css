@@ -15,7 +15,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 105%;
     position: absolute; /* Position the overlay absolutely */
     z-index: -1; /* Place the overlay behind the content */
 }
@@ -28,6 +28,9 @@
   justify-content: center; /* Horizontally center the items */
   align-items: center; /* Vertically center the items */
   border-bottom: 1px solid #f4c531;
+}
+.navbar u{
+  color: #f4c531;
 }
 .navbar h2{
   color: #ffffff;
@@ -56,8 +59,6 @@
 .navbar a:hover {
   color: #f4c531;
 }
-
-
   .Heading{
     color: #ffffff;
     margin-left: 11%;
@@ -100,7 +101,7 @@
     border: none;
     outline: none;
     border-bottom: 2px solid #202030;
-    background-color: #ffffff43;
+    background-color: #ffffff30;
     color: #090909;
     font-weight: 600;
   }
@@ -113,6 +114,14 @@
     border: none;
     font-weight: 600;
     border-radius: 0.3em;
+  }
+  .search-container button:hover{
+    font-size: 1em;
+    background-color: #f6f4f0;
+    border: none;
+    font-weight: 600;
+    border-radius: 0.3em;
+    transition: 500ms;
   }
   img {
     display: block;
@@ -151,12 +160,14 @@
   #recipe {
     position: absolute;
     background-color: #f2e1e1;
-    min-height: 100%;
+    min-height: 90%;
     width: 100%;
     top: 0;
     left: 0;
     z-index: 2;
-    border-radius: 0.6em;
+    border-radius: 1em;
+    max-height: 100px; /* Adjust the maximum height as needed */
+    overflow-y: auto; /* Enable vertical scrolling when content exceeds max-height */
     display: none;
   }
   #recipe pre {
@@ -197,3 +208,31 @@
       font-size: 14px;
     }
   }
+
+
+
+  /* Your existing CSS styles */
+
+#suggestions-container {
+  position: absolute;
+  width: 59%;
+  background-color: #f4c731b9;
+  border: 1px solid #ccc;
+  max-height: 200px; /* Adjust the maximum height as needed */
+  overflow-y: auto; /* Enable vertical scrolling when content exceeds max-height */
+  display: none;
+  z-index: 1;
+}
+.suggestion-item{
+  cursor:pointer;
+}
+.suggestion-item:hover{
+  color:#fffdfd;
+  background-color: #3d3b39e6;
+  transition: 0.3s;
+}
+
+/* Your existing CSS styles for suggestion items */
+input[type="text"] {
+  z-index: 2; /* Set a higher z-index for the input field to make it appear above the suggestions container */
+}
